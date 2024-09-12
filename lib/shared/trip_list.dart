@@ -3,12 +3,14 @@ import 'package:ninja_trips/models/Trip.dart';
 import 'package:ninja_trips/screens/details.dart';
 
 class TripList extends StatefulWidget {
+  const TripList({super.key});
+
   @override
   _TripListState createState() => _TripListState();
 }
 
 class _TripListState extends State<TripList> {
-  List<Widget> _tripTiles = [];
+  final List<Widget> _tripTiles = [];
   final GlobalKey _listKey = GlobalKey();
 
   @override
@@ -19,14 +21,14 @@ class _TripListState extends State<TripList> {
 
   void _addTrips() {
     // get data from db
-    List<Trip> _trips = [
+    List<Trip> trips = [
       Trip(title: 'Beach Paradise', price: '350', nights: '3', img: 'beach.png'),
       Trip(title: 'City Break', price: '400', nights: '5', img: 'city.png'),
       Trip(title: 'Ski Adventure', price: '750', nights: '2', img: 'ski.png'),
       Trip(title: 'Space Blast', price: '600', nights: '4', img: 'space.png'),
     ];
 
-    _trips.forEach((Trip trip) {
+    trips.forEach((Trip trip) {
       _tripTiles.add(_buildTile(trip));
     });
   }
@@ -36,7 +38,7 @@ class _TripListState extends State<TripList> {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => Details(trip: trip)));
       },
-      contentPadding: EdgeInsets.all(25),
+      contentPadding: const EdgeInsets.all(25),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
